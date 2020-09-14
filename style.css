@@ -1,0 +1,39 @@
+table {
+	margin:1em auto;
+	border-collapse: collapse;
+    border-spacing: 0;
+  }
+td {
+	height:60px;
+	width:60px;
+	border:1px solid;
+	text-align:center;
+	font-size: 150%;
+	margin: 0;
+	padding: 0;
+}
+td:first-child {
+	border-left:solid;	
+}
+td:nth-child(3n) {
+	border-right:solid ;
+}
+
+/* td:first-child div{
+outline: 0px solid transparent;
+} */
+tr{
+	margin: 0;
+	padding: 0;
+}
+tr:first-child {
+	border-top:solid;
+}
+tr:nth-child(3n) td {
+	border-bottom:solid ;
+}
+[contenteditable]:focus {
+	background: #D3D3D3;
+	outline: 0px solid transparent;
+	caret-color: transparent
+}
