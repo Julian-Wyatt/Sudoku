@@ -75,8 +75,10 @@ model = tf.keras.models.Sequential([
     tf.keras.layers.MaxPool2D(2, 2),
     tf.keras.layers.GaussianNoise(0.1),
     tf.keras.layers.Flatten(),
-    tf.keras.layers.Dense(200, activation='relu'),
-
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dropout(0.5),
+    tf.keras.layers.Dense(64, activation='relu'),
+    tf.keras.layers.Dropout(0.5),
     tf.keras.layers.Dense(9, activation='softmax')
 ])
 model.compile(
