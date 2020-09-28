@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sudoku Solver</title>
+	<script src="./index.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet" type="text/css" />
+	<link href="style.css" rel="stylesheet" type="text/css" />
+           
+  </head>
+
+  <body onload="main()">
+
+
+
+	 <h1 class="ui block header" align="center" style="margin-left:20px; margin-right:20px">
+                Sudoku solver
+            </h1>
+			<div class="ui message" style="margin-left:2em; margin-right:2em" >
+				
+				<div class="header" >
+					Instructions are as follows: 
+				</div>
+				</div>
+            <div class="ui segment">
+                <div class="ui two column grid">
+					<div class="ui segment" id="glWidthParent">
+							
+						<div class="nine wide column">
+
+							<!--
+							<table id="grid">
+								<tr id="row1">
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable>7</td>
+									<td contenteditable></td>
+									<td contenteditable>6</td>
+									<td contenteditable>1</td>
+									<td contenteditable></td>
+									<td contenteditable>4</td>
+								</tr>
+								<tr id="row2">
+									<td contenteditable>9</td>
+									<td contenteditable>1</td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable>6</td>
+									<td contenteditable></td>
+								</tr>
+								<tr id="row3">
+									<td contenteditable>7</td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+								</tr>
+								<tr id="row4">
+									<td contenteditable></td>
+									<td contenteditable>2</td>
+									<td contenteditable></td>
+									<td contenteditable>9</td>
+									<td contenteditable></td>
+									<td contenteditable>8</td>
+									<td contenteditable>4</td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+								</tr>
+								<tr id="row5">
+									<td contenteditable>3</td>
+									<td contenteditable></td>
+									<td contenteditable>9</td>
+									<td contenteditable></td>
+									<td contenteditable>6</td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+								</tr>
+								<tr id="row6">
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable>1</td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+								</tr>
+								<tr id="row7">
+									<td contenteditable>4</td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable>9</td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable>1</td>
+								</tr>
+								<tr id="row8">
+									<td contenteditable>1</td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable>4</td>
+									<td contenteditable></td>
+									<td contenteditable>7</td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable>2</td>
+								</tr>
+								<tr id="row9">
+									<td contenteditable></td>
+									<td contenteditable>9</td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable>3</td>
+									<td contenteditable>2</td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+									<td contenteditable></td>
+								</tr>
+							</table>
+							
+
+						-->
+						<table id="grid">
+							<tr id="row1">
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+							</tr>
+							<tr id="row2">
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable>1</td>
+								<td contenteditable>3</td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable>9</td>
+								<td contenteditable>7</td>
+								<td contenteditable></td>
+							</tr>
+							<tr id="row3">
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable>6</td>
+								<td contenteditable>4</td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+							</tr>
+							<tr id="row4">
+								<td contenteditable>3</td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable>6</td>
+								<td contenteditable>9</td>
+								<td contenteditable></td>
+							</tr>
+							<tr id="row5">
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable>9</td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable>2</td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+							</tr>
+							<tr id="row6">
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable>9</td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable>4</td>
+								<td contenteditable>1</td>
+							</tr>
+							<tr id="row7">
+								<td contenteditable>9</td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable>3</td>
+								<td contenteditable>5</td>
+								<td contenteditable></td>
+								<td contenteditable>6</td>
+							</tr>
+							<tr id="row8">
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable>3</td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable>1</td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+							</tr>
+							<tr id="row9">
+								<td contenteditable></td>
+								<td contenteditable>5</td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable></td>
+								<td contenteditable>1</td>
+								<td contenteditable></td>
+							</tr>
+						</table>
+						</div> 
+                    </div>
+
+                    <div class="four wide column">
+						<button class="ui button" id="clearButton">Clear</button>
+						<button class="ui button" id="solveButton">Solve</button>
+					</div>
+					<p id="status">OpenCV.js is loading...</p>
+					<div class="inputoutput">
+						<img id="imageSrc" style="display:none" alt="No Image" />
+						<div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+					  </div>
+					  <canvas id="canvasOutput"></canvas>
+
+            </div>
+        </div>
+
+
+  </body>
+
+  <script async src="opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</html>
