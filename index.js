@@ -115,6 +115,10 @@ class imagingExtraction{
 		updateGridHTML(this.finalGrid)
 		updateGridObject(sudokuGrid.grid)
 
+		
+		let r = (window.innerHeight/2 ) / this.img.rows
+		let dim = [Math.round(this.img.cols * r), (window.innerHeight/2 )]
+		cv.resize(this.img,this.img, new cv.Size(dim[0], dim[1]),0,0)
 		cv.imshow('canvasOutput', this.img);
 		// this.img.delete()
 		// this.hardThreshold.delete()
@@ -480,7 +484,7 @@ function clearGridHTML(){
 }
 
 function onOpenCvReady() {
-	document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+	document.getElementById('status').innerHTML = 'If you would like to import an image of a sudoku,<br> please enter the file below';
   }
 
 let keypressed = {}

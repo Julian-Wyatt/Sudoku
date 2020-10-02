@@ -21,6 +21,8 @@
 				<div class="header" >
 					Instructions are as follows: 
 				</div>
+				Enter the sudoku you wish to solve in the grid below. <br>Click solve and the first valid solution will be displayed.<br>
+				Alternatively, if you wish to use an image, please enter it below and it will display it within the grid.
 				</div>
             <div class="ui segment">
                 <div class="ui two column grid">
@@ -241,10 +243,11 @@
 						<button class="ui button" id="clearButton">Clear</button>
 						<button class="ui button" id="solveButton">Solve</button>
 						<br>
-						<p id="status">OpenCV.js is loading...</p>
+
 						<div class="inputoutput">
 							<img id="imageSrc" style="display:none" alt="No Image" />
-							<div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+							<p id="status">If you would like to import an image of a sudoku,<br> please wait for opencv to load </p>
+							<input type="file" id="fileInput" name="file" />
 					  	</div>
 						<br>
 						<canvas id="canvasOutput"></canvas>
