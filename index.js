@@ -313,23 +313,23 @@ class imagingExtraction{
 
                         if (mean(roi.data) < 100) cv.bitwise_not(roi,roi)
 
-						roi = roi.roi(new cv.Rect(2,4,26,24))
+						roi = roi.roi(new cv.Rect(3,3,25,25))
 						
-						let tempROI = roi.roi(new cv.Rect(0,0,roi.cols-1,1))
+						// let tempROI = roi.roi(new cv.Rect(0,0,roi.cols-1,1))
 
-						// rows,cols
-						while (mean2d(tempROI) < 100) {
-							roi = roi.roi(new cv.Rect(1,0,roi.cols-1,roi.rows))
-							tempROI = roi.roi(new cv.Rect(0,0,roi.cols-1,1))
+						// // rows,cols
+						// while (mean2d(tempROI) < 100) {
+						// 	roi = roi.roi(new cv.Rect(1,0,roi.cols-1,roi.rows))
+						// 	tempROI = roi.roi(new cv.Rect(0,0,roi.cols-1,1))
 
-						}
+						// }
 
-						tempROI = roi.roi(new cv.Rect(0,0,1,roi.rows-1))
+						// tempROI = roi.roi(new cv.Rect(0,0,1,roi.rows-1))
 						
-						while (mean2d(tempROI) < 100) {
-							roi = roi.roi(new cv.Rect(0,1,roi.cols,roi.rows-1))
-							tempROI = roi.roi(new cv.Rect(0,0,1,roi.rows-1))
-						}
+						// while (mean2d(tempROI) < 100) {
+						// 	roi = roi.roi(new cv.Rect(0,1,roi.cols,roi.rows-1))
+						// 	tempROI = roi.roi(new cv.Rect(0,0,1,roi.rows-1))
+						// }
 						
 
 						cv.resize(roi,roi, this.size,0,0,cv.INTER_AREA)
@@ -353,15 +353,15 @@ class imagingExtraction{
 			}
 		}
 
-		// cv.imshow('canvasOutput2', this.finalGrid[1][0]);
-		// cv.imshow('canvasOutput3', this.finalGrid[1][1]);
-		// cv.imshow('canvasOutput4', this.finalGrid[1][2]);
-		// cv.imshow('canvasOutput5', this.finalGrid[1][3]);
-		// cv.imshow('canvasOutput6', this.finalGrid[1][4]);
-		// cv.imshow('canvasOutput7', this.finalGrid[1][5]);
-		// cv.imshow('canvasOutput8', this.finalGrid[1][6]);
-		// cv.imshow('canvasOutput9', this.finalGrid[1][7]);
-		// cv.imshow('canvasOutput10', this.finalGrid[1][8]);
+		// cv.imshow('canvasOutput2', this.finalGrid[2][0]);
+		// cv.imshow('canvasOutput3', this.finalGrid[2][1]);
+		// cv.imshow('canvasOutput4', this.finalGrid[2][2]);
+		// cv.imshow('canvasOutput5', this.finalGrid[2][3]);
+		// cv.imshow('canvasOutput6', this.finalGrid[2][4]);
+		// cv.imshow('canvasOutput7', this.finalGrid[2][5]);
+		// cv.imshow('canvasOutput8', this.finalGrid[2][6]);
+		// cv.imshow('canvasOutput9', this.finalGrid[2][7]);
+		// cv.imshow('canvasOutput10', this.finalGrid[2][8]);
 		return true
 					
 	}
