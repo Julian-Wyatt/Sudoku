@@ -240,19 +240,33 @@
                     <div class="four wide column">
 						<button class="ui button" id="clearButton">Clear</button>
 						<button class="ui button" id="solveButton">Solve</button>
+						<br>
+						<p id="status">OpenCV.js is loading...</p>
+						<div class="inputoutput">
+							<img id="imageSrc" style="display:none" alt="No Image" />
+							<div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+					  	</div>
+						<br>
+						<canvas id="canvasOutput"></canvas>
+						<!-- <canvas id="canvasOutput2"></canvas>
+						<canvas id="canvasOutput3"></canvas>
+						<canvas id="canvasOutput4"></canvas>
+						<canvas id="canvasOutput5"></canvas>
+						<canvas id="canvasOutput6"></canvas>
+						<canvas id="canvasOutput7"></canvas>
+						<canvas id="canvasOutput8"></canvas>
+						<canvas id="canvasOutput9"></canvas>
+						<canvas id="canvasOutput10"></canvas> -->
 					</div>
-					<p id="status">OpenCV.js is loading...</p>
-					<div class="inputoutput">
-						<img id="imageSrc" style="display:none" alt="No Image" />
-						<div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
-					  </div>
-					  <canvas id="canvasOutput"></canvas>
+					
+
 
             </div>
         </div>
 
 
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
 
   <script async src="opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
 </html>

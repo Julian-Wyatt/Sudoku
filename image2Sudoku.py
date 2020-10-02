@@ -44,6 +44,7 @@ class imagingInformation:
 
 
     def initialImaging(self, threshValue):
+        print(self.img.shape)
         if (self.img.shape[0] > 750):
             self.img = cv2.resize(self.img, (0, 0), fx=0.4, fy=0.4)
         else:
@@ -101,7 +102,7 @@ class imagingInformation:
                 cv2.line(self.img, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
         self.vertical = sorted([i[0] for i in self.vertical])
-        self.horizontal = sorted(i[0] for i in self.horizontal)
+        self.horizontal = sorted([i[0] for i in self.horizontal])
         # rho = x Cos(theta) + y Sin(theta)
         # cos (0) = 1; cos(1.57...) = 0
 
@@ -209,7 +210,7 @@ class imagingInformation:
     def predict(self):
         totalNums = 0
         totalBlanks = 0
-
+        print(len(self.means))
         values = []
         for i in range(len(self.means)):
             if self.means[i] < 245:
@@ -242,6 +243,7 @@ class imagingInformation:
         cv2.imshow("image", self.img)
         cv2.imshow("edges", self.edges)
         cv2.imshow("thresh", self.thresholdGray)
+        cv2.imshow("hardThres",self.hardThreshold)
         cv2.imshow("original gray", self.gray)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
@@ -311,7 +313,7 @@ def auto_canny(image, sigma=0.33):
 
 
 
-newImage = imagingInformation("./images/IMG_2840.png")
+newImage = imagingInformation("./images/10.png")
 print("\n\n\n")
 newSolver = Solver(newImage.finalGrid)
 newSolver.backtrack(newSolver.initial)

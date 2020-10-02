@@ -2,6 +2,7 @@
 import tensorflow.compat.v2 as tf
 import tensorflow_datasets as tfds
 import numpy as np
+import tensorflowjs as tfjs
 
 tf.enable_v2_behavior()
 # (ds_train, ds_test), ds_info = tfds.load(
@@ -94,4 +95,5 @@ model.fit(
     verbose=1
 )
 
-model.save("./Model/saved28x28NumberPredictor")
+# model.save("./Model/saved28x28NumberPredictor")
+tfjs.converters.save_keras_model(model, "./Model/js")
