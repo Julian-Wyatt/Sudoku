@@ -470,6 +470,10 @@ function updateGridHTML(grid){
 }
 
 function clearGridHTML(){
+	document.getElementById("fileInput").value = null;
+	const context = document.getElementById("canvasOutput").getContext('2d');
+
+	context.clearRect(0, 0, document.getElementById("canvasOutput").width, document.getElementById("canvasOutput").height);
 	for (let i=0;i<9;i++){
 		let row = document.getElementById("row"+(i+1)).children
 
