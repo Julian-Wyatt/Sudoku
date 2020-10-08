@@ -35,6 +35,12 @@ def erode(img,name):
     cv2.imshow("eroded"+str(name), img)
     return img
 
+def randomWarp(img):
+    rows, cols = img.shape
+    M = np.float32([[1, 0, int(random.random()*10)-5], [0, 1, int(random.random()*6)-3]])
+    dst = cv2.warpAffine(img, M, (cols, rows), borderValue=(255,255,255))
+    return dst
+
 # image = cv2.imread("./4/4.png", cv2.IMREAD_GRAYSCALE)
 # dilate(image)
 # erode(image)
@@ -138,17 +144,19 @@ for i in range (1,10):
     #          "7-22.jpg"]
     images = []
     totalImages = 0
-    for k in range(175):
+    for k in range(50):
         for j in range(len(files)):
-            if len(files[j]) < 7:
+            if files[j][0:9] != "Generated":
 
                 temp = cv2.imread("./"+str(i)+"/"+str(files[j]), cv2.IMREAD_GRAYSCALE)
 
                 images.append(temp)
                 try:
                     pass
-                    cv2.imwrite("./"+str(i)+"/Generated-"+str(totalImages)+"-Gauss.jpg",add_Gauss_Noise(temp))
-                    cv2.imwrite("./"+str(i)+"/Generated-" + str(totalImages+1) + "-sp.jpg", add_s_p_Noise(temp))
+
+                    cv2.imwrite("./"+str(i)+"/Generated-" + str(totalImages+1) + "-Warped-sp.jpg", add_s_p_Noise(
+                        randomWarp(temp)))
+
 
                 except AttributeError:
 

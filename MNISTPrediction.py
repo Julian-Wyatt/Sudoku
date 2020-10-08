@@ -1,17 +1,20 @@
-# import tensorflow as tf
-import tensorflow.compat.v2 as tf
+import tensorflow as tf
+# import tensorflow.compat.v2 as tf
 import tensorflow_datasets as tfds
 import numpy as np
 import tensorflowjs as tfjs
 
-tf.enable_v2_behavior()
-# (ds_train, ds_test), ds_info = tfds.load(
-#     'mnist',
-#     split=['train', 'test'],
-#     shuffle_files=True,
-#     as_supervised=True,
-#     with_info=True,
-# )
+# tf.enable_v2_behavior()
+(ds_train, ds_test), ds_info = tfds.load(
+    'mnist',
+    split=['train', 'test'],
+    shuffle_files=True,
+    as_supervised=True,
+    with_info=True,
+
+
+)
+
 # import matplotlib.pyplot as plt
 #
 # plt.figure(figsize=(10, 10))
@@ -22,40 +25,43 @@ tf.enable_v2_behavior()
 #     plt.imshow(image_.squeeze(),cmap='gray')
 #     plt.title(int(label))
 #     plt.axis("off")
-# # plt.show()
-#
-# def normalize_img(image, label):
-#   """Normalizes images: `uint8` -> `float32`."""
-#   return tf.cast(image, tf.float32) / 255., label
-#
-# ds_train = ds_train.map(
-#     normalize_img, num_parallel_calls=tf.data.experimental.AUTOTUNE)
-# ds_train = ds_train.cache()
-# ds_train = ds_train.shuffle(ds_info.splits['train'].num_examples)
-# ds_train = ds_train.batch(128)
-# ds_train = ds_train.prefetch(tf.data.experimental.AUTOTUNE)
-#
-#
-#
-# ds_test = ds_test.map(normalize_img, num_parallel_calls=tf.data.experimental.AUTOTUNE)
-# ds_test = ds_test.batch(128)
-# ds_test = ds_test.cache()
-# ds_test = ds_test.prefetch(tf.data.experimental.AUTOTUNE)
+# plt.show()
+
+
+def normalize_img(image, label):
+  """Normalizes images: `uint8` -> `float32`."""
+  return tf.cast(image, tf.float32) / 255., label
+
+ds_train = ds_train.map(
+    normalize_img, num_parallel_calls=tf.data.experimental.AUTOTUNE)
+ds_train = ds_train.cache()
+ds_train = ds_train.shuffle(ds_info.splits['train'].num_examples)
+ds_train = ds_train.batch(128)
+ds_train = ds_train.prefetch(tf.data.experimental.AUTOTUNE)
+
+
+ds_test = ds_test.map(normalize_img, num_parallel_calls=tf.data.experimental.AUTOTUNE)
+ds_test = ds_test.batch(128)
+ds_test = ds_test.cache()
+ds_test = ds_test.prefetch(tf.data.experimental.AUTOTUNE)
+
 
 img_height = 28
 img_width = 28
-batch_size = 32
+batch_size = 128
 data_dir = "./fontImages/"
 
 train_ds = tf.keras.preprocessing.image_dataset_from_directory(
   data_dir,
+
     color_mode='grayscale',
   validation_split=0.35,
   subset="training",
   seed=123,
   image_size=(img_height, img_width),
   batch_size=batch_size)
-
+# print(tf.cast(train_ds,(tf.float32,tf.int64)))
+print(train_ds)
 val_ds = tf.keras.preprocessing.image_dataset_from_directory(
   data_dir,
 color_mode='grayscale',
@@ -65,9 +71,13 @@ color_mode='grayscale',
   image_size=(img_height, img_width),
   batch_size=batch_size)
 
+print(val_ds,ds_test)
+# train_ds = ds_train.concatenate(train_ds)
+# val_ds = val_ds.concatenate(ds_test)
+
 class_names = train_ds.class_names
 print(class_names)
-
+# exit()
 model = tf.keras.models.Sequential([
 
     tf.keras.layers.Conv2D(16, (5, 5), activation="relu", input_shape=(28, 28, 1)),
@@ -90,10 +100,10 @@ model.compile(
 
 model.fit(
     train_ds,
-    epochs=10,
+    epochs=15,
     validation_data=val_ds,
     verbose=1
 )
 
-# model.save("./Model/saved28x28NumberPredictor")
+model.save("./Model/saved28x28NumberPredictor")
 tfjs.converters.save_keras_model(model, "./Model/js")

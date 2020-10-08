@@ -353,7 +353,7 @@ class imagingExtraction{
 			}
 		}
 
-		// cv.imshow('canvasOutput2', this.finalGrid[2][0]);
+		cv.imshow('canvasOutput2', this.finalGrid[4][1]);
 		// cv.imshow('canvasOutput3', this.finalGrid[2][1]);
 		// cv.imshow('canvasOutput4', this.finalGrid[2][2]);
 		// cv.imshow('canvasOutput5', this.finalGrid[2][3]);

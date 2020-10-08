@@ -312,8 +312,8 @@ def auto_canny(image, sigma=0.33):
     return edged
 
 
-
-newImage = imagingInformation("./images/10.png")
+newImage = imagingInformation("./images/IMG_2840.png")
+# newImage = imagingInformation("./images/10.png")
 print("\n\n\n")
 newSolver = Solver(newImage.finalGrid)
 newSolver.backtrack(newSolver.initial)
